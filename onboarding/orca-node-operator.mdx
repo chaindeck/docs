@@ -1,0 +1,176 @@
+---
+title: "ORCA Node Operator"
+description: "In this tutorial you'll learn how to set the ORCA Node Operator"
+---
+
+## Steps
+
+To install ORCA, you have to follow these steps respectively.
+
+#### 1. Generate API Key
+
+Register and log in to [ORCA_WEB_UI](http://orca.chaindeck.io/) and get the API Key to get authenticated for running ORCA.
+
+#### 2. Install Podman
+
+Install Podman according to your system preferences.
+
+<Tabs>
+    <Tab title="Linux">
+        Update apt repository
+
+        <CodeGroup>
+
+            ```bash Terminal
+            sudo apt update && sudo apt upgrade
+            ```
+
+        </CodeGroup>
+
+        Install Podman
+
+        <CodeGroup>
+
+            ```bash Terminal
+            sudo apt install podman -y
+            ```
+
+        </CodeGroup>
+
+        Initialize ORCA Podman machine
+
+        <CodeGroup>
+
+            ```bash Terminal
+            podman machine init orca
+            ```
+
+        </CodeGroup>
+
+        Start ORCA Podman machine
+
+        <CodeGroup>
+
+            ```bash Terminal
+            podman machine start orca
+            ```
+
+        </CodeGroup>
+
+        <br />
+
+        <Warning>If the machine does not start and fails with any error, it means you have to enable virtualization from the BIOS settings.</Warning>
+    </Tab>
+    <Tab title="Windows">
+        Download and install the latest version of Podman from [here](https://github.com/containers/podman/releases).
+
+        Initialize Podman machine
+
+        <CodeGroup>
+
+            ```bash CMD
+            podman machine init
+            ```
+
+        </CodeGroup>
+
+        Start Podman machine
+
+        <CodeGroup>
+
+            ```bash CMD
+            podman machine start
+            ```
+
+        </CodeGroup>
+
+        <br />
+
+        <Note>You can check out the [Podman for Windows guide](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md) for setup and usage instructions.</Note>
+
+    </Tab>
+    <Tab title="Mac">
+        On Mac, each Podman machine is backed by a [QEMU](https://www.qemu.org/) based virtual machine. Once installed, the podman command can be run directly from the Unix shell in Terminal, where it remotely communicates with the podman service running in the Machine VM. Podman is provided through [Homebrew](https://brew.sh/). Once you have set up brew, you can use the brew install command to install Podman.
+
+        Install Podman
+
+        <CodeGroup>
+
+            ```bash Terminal
+            brew install podman
+            ```
+
+        </CodeGroup>
+
+        Create and start your first Podman machine
+
+        <CodeGroup>
+
+            ```bash Terminal
+            podman machine init
+            podman machine start
+            ```
+
+        </CodeGroup>
+
+        You can then verify the installation information using
+
+        <CodeGroup>
+
+            ```bash Terminal
+            podman info
+            ```
+
+        </CodeGroup>
+
+        <br />
+
+        <Note>Podman also provide binaries and pkginstaller in their [GitHub release page](https://github.com/containers/podman/releases)</Note>
+    </Tab>
+
+</Tabs>
+
+#### 3. Install ORCA
+
+You can install or update the ORCA running the commands in a terminal/cmd.
+
+<Tabs>
+    <Tab title="Linux">
+        Download ORCA
+
+        <CodeGroup>
+
+            ```bash Terminal
+            curl https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.1.AppImage -o orca
+            ```
+
+        </CodeGroup>
+    </Tab>
+    <Tab title="Windows">
+        To download ORCA click [here](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca+Setup+0.0.1.exe)
+    </Tab>
+    <Tab title="Mac">
+        Download ORCA
+
+        <CodeGroup>
+
+            ```bash Terminal
+            curl https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.1.dmg -o orca.dmg
+            ```
+
+        </CodeGroup>
+    </Tab>
+
+</Tabs>
+
+#### 4. Start ORCA
+
+You can use API Key that you created on step 1
+
+<CodeGroup>
+
+```bash Terminal
+orca --API_KEY=<your-api-key>
+```
+
+</CodeGroup>
