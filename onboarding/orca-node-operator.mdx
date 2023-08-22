@@ -1,6 +1,6 @@
 ---
 title: "ORCA Node Operator"
-description: "In this tutorial you'll learn how to set the ORCA Node Operator"
+description: "In this tutorial you'll learn how to set up the ORCA Node Operator"
 ---
 
 ## Steps
@@ -9,53 +9,35 @@ To install ORCA, you have to follow these steps respectively.
 
 #### 1. Generate API Key
 
-Register and log in to [ORCA_WEB_UI](http://orca.chaindeck.io/) and get the API Key to get authenticated for running ORCA.
+Register as ORCA Node Operator and log in to [ORCA_WEB_UI](http://orca.chaindeck.io/) and get the API Key to get authenticated for running ORCA.
 
 #### 2. Install Podman
 
 Install Podman according to your system preferences.
 
 <Tabs>
-    <Tab title="Linux">
-        Update apt repository
+    <Tab title="Linux (Ubuntu)">
+        <Note>The podman package is available in the official repositories for Ubuntu 20.10 and newer.</Note>
 
-        <CodeGroup>
+        Install podman
 
-            ```bash Terminal
-            sudo apt update && sudo apt upgrade
-            ```
+        ```bash Terminal
+        # Ubuntu 20.10 and newer
+        sudo apt-get update
+        sudo apt-get install podman -y
+        ```
 
-        </CodeGroup>
+        Initialize podman machine named `orca`
 
-        Install Podman
+        ```bash Terminal
+        podman machine init orca
+        ```
 
-        <CodeGroup>
+        Start podman machine named `orca`
 
-            ```bash Terminal
-            sudo apt install podman -y
-            ```
-
-        </CodeGroup>
-
-        Initialize ORCA Podman machine
-
-        <CodeGroup>
-
-            ```bash Terminal
-            podman machine init orca
-            ```
-
-        </CodeGroup>
-
-        Start ORCA Podman machine
-
-        <CodeGroup>
-
-            ```bash Terminal
-            podman machine start orca
-            ```
-
-        </CodeGroup>
+        ```bash Terminal
+        podman machine start orca
+        ```
 
         <br />
 
@@ -64,25 +46,17 @@ Install Podman according to your system preferences.
     <Tab title="Windows">
         Download and install the latest version of Podman from [here](https://github.com/containers/podman/releases).
 
-        Initialize Podman machine
+        Initialize podman machine named `orca`
 
-        <CodeGroup>
+        ```bash CMD
+        podman machine init orca
+        ```
 
-            ```bash CMD
-            podman machine init
-            ```
+        Start podman machine named `orca`
 
-        </CodeGroup>
-
-        Start Podman machine
-
-        <CodeGroup>
-
-            ```bash CMD
-            podman machine start
-            ```
-
-        </CodeGroup>
+        ```bash CMD
+        podman machine start orca
+        ```
 
         <br />
 
@@ -90,38 +64,26 @@ Install Podman according to your system preferences.
 
     </Tab>
     <Tab title="Mac">
-        On Mac, each Podman machine is backed by a [QEMU](https://www.qemu.org/) based virtual machine. Once installed, the podman command can be run directly from the Unix shell in Terminal, where it remotely communicates with the podman service running in the Machine VM. Podman is provided through [Homebrew](https://brew.sh/). Once you have set up brew, you can use the brew install command to install Podman.
+        On Mac, Podman is provided through [Homebrew](https://brew.sh/). Once you have set up brew, you can use the brew install command to install Podman.
 
-        Install Podman
+        Install podman
 
-        <CodeGroup>
+        ```bash Terminal
+        brew install podman
+        ```
 
-            ```bash Terminal
-            brew install podman
-            ```
+        Create and start your first podman machine named `orca`
 
-        </CodeGroup>
-
-        Create and start your first Podman machine
-
-        <CodeGroup>
-
-            ```bash Terminal
-            podman machine init
-            podman machine start
-            ```
-
-        </CodeGroup>
+        ```bash Terminal
+        podman machine init orca
+        podman machine start orca
+        ```
 
         You can then verify the installation information using
 
-        <CodeGroup>
-
-            ```bash Terminal
-            podman info
-            ```
-
-        </CodeGroup>
+        ```bash Terminal
+        podman info
+        ```
 
         <br />
 
@@ -130,47 +92,20 @@ Install Podman according to your system preferences.
 
 </Tabs>
 
-#### 3. Install ORCA
+#### 3. Download and install ORCA
 
-You can install or update the ORCA running the commands in a terminal/cmd.
+You can download ORCA according to your system preferences.
 
-<Tabs>
-    <Tab title="Linux">
-        Download ORCA
-
-        <CodeGroup>
-
-            ```bash Terminal
-            curl https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.1.AppImage -o orca
-            ```
-
-        </CodeGroup>
-    </Tab>
-    <Tab title="Windows">
-        To download ORCA click [here](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca+Setup+0.0.1.exe)
-    </Tab>
-    <Tab title="Mac">
-        Download ORCA
-
-        <CodeGroup>
-
-            ```bash Terminal
-            curl https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.1.dmg -o orca.dmg
-            ```
-
-        </CodeGroup>
-    </Tab>
-
-</Tabs>
+| OS Type           | Architecture Type | Link                                                                                    |
+| ----------------- | ----------------- | --------------------------------------------------------------------------------------- |
+| Linux (.AppImage) | x64               | [Download](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.1.AppImage)  |
+| Windows (.exe)    | x64               | [Download](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca+Setup+0.0.1.exe) |
+| Mac(.dmg)         | arm64             | [Download](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.1.dmg)       |
 
 #### 4. Start ORCA
 
-You can use API Key that you created on step 1
-
-<CodeGroup>
+You can use `api-key` that you created on **Step 1**
 
 ```bash Terminal
 orca --API_KEY=<your-api-key>
 ```
-
-</CodeGroup>
