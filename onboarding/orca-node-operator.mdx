@@ -43,26 +43,6 @@ Install Podman according to your system preferences.
 
         <Warning>If the machine does not start and fails with any error, it means you have to enable virtualization from the BIOS settings.</Warning>
     </Tab>
-    <Tab title="Windows">
-        Download and install the latest version of Podman from [here](https://github.com/containers/podman/releases).
-
-        Initialize podman machine named `orca`
-
-        ```bash CMD
-        podman machine init orca
-        ```
-
-        Start podman machine named `orca`
-
-        ```bash CMD
-        podman machine start orca
-        ```
-
-        <br />
-
-        <Note>You can check out the [Podman for Windows guide](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md) for setup and usage instructions.</Note>
-
-    </Tab>
     <Tab title="Mac">
         On Mac, Podman is provided through [Homebrew](https://brew.sh/). Once you have set up brew, you can use the brew install command to install Podman.
 
@@ -88,6 +68,25 @@ Install Podman according to your system preferences.
         <br />
 
         <Note>Podman also provide binaries and pkginstaller in their [GitHub release page](https://github.com/containers/podman/releases)</Note>
+    </Tab>
+    <Tab title="Windows">
+        Download and install the latest version of Podman from [here](https://github.com/containers/podman/releases).
+
+        Initialize podman machine named `orca`
+
+        ```bash CMD
+        podman machine init orca
+        ```
+
+        Start podman machine named `orca`
+
+        ```bash CMD
+        podman machine start orca
+        ```
+
+        <br />
+
+        <Note>You can check out the [Podman for Windows guide](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md) for setup and usage instructions.</Note>
     </Tab>
 
 </Tabs>
