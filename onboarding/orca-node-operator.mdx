@@ -1,0 +1,110 @@
+---
+title: "ORCA Node Operator"
+description: "In this tutorial you'll learn how to set up the ORCA Node Operator"
+---
+
+## Steps
+
+To install ORCA, you have to follow these steps respectively.
+
+#### 1. Generate API Key
+
+Register as ORCA Node Operator and log in to [ORCA_WEB_UI](http://orca.chaindeck.io/) and get the API Key to get authenticated for running ORCA.
+
+#### 2. Install Podman
+
+Install Podman according to your system preferences.
+
+<Tabs>
+    <Tab title="Linux (Ubuntu)">
+        <Note>The podman package is available in the official repositories for Ubuntu 20.10 and newer.</Note>
+
+        Install podman
+
+        ```bash Terminal
+        # Ubuntu 20.10 and newer
+        sudo apt-get update
+        sudo apt-get install podman -y
+        ```
+
+        Initialize podman machine named `orca`
+
+        ```bash Terminal
+        podman machine init orca
+        ```
+
+        Start podman machine named `orca`
+
+        ```bash Terminal
+        podman machine start orca
+        ```
+
+        <br />
+
+        <Warning>If the machine does not start and fails with any error, it means you have to enable virtualization from the BIOS settings.</Warning>
+    </Tab>
+    <Tab title="Mac">
+        On Mac, Podman is provided through [Homebrew](https://brew.sh/). Once you have set up brew, you can use the brew install command to install Podman.
+
+        Install podman
+
+        ```bash Terminal
+        brew install podman
+        ```
+
+        Create and start your first podman machine named `orca`
+
+        ```bash Terminal
+        podman machine init orca
+        podman machine start orca
+        ```
+
+        You can then verify the installation information using
+
+        ```bash Terminal
+        podman info
+        ```
+
+        <br />
+
+        <Note>Podman also provide binaries and pkginstaller in their [GitHub release page](https://github.com/containers/podman/releases)</Note>
+    </Tab>
+    <Tab title="Windows">
+        Download and install the latest version of Podman from [here](https://github.com/containers/podman/releases).
+
+        Initialize podman machine named `orca`
+
+        ```bash CMD
+        podman machine init orca
+        ```
+
+        Start podman machine named `orca`
+
+        ```bash CMD
+        podman machine start orca
+        ```
+
+        <br />
+
+        <Note>You can check out the [Podman for Windows guide](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md) for setup and usage instructions.</Note>
+    </Tab>
+
+</Tabs>
+
+#### 3. Download and install ORCA
+
+You can download ORCA according to your system preferences.
+
+| OS Type           | Architecture Type | Link                                                                                    |
+| ----------------- | ----------------- | --------------------------------------------------------------------------------------- |
+| Linux (.AppImage) | x64               | [Download](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.1.AppImage)  |
+| Windows (.exe)    | x64               | [Download](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca+Setup+0.0.1.exe) |
+| Mac(.dmg)         | arm64             | [Download](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.1.dmg)       |
+
+#### 4. Start ORCA
+
+You can use `api-key` that you created on **Step 1**
+
+```bash Terminal
+orca --API_KEY=<your-api-key>
+```

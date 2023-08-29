@@ -1,0 +1,96 @@
+---
+title: "ORCA Pod Creator"
+description: "In this tutorial you'll learn how to use the ORCA Pod Creator"
+---
+
+OPC (ORCA Pod Creator) is gonna be used `orca-pulse` to communicate with ORCA. `orca-pulse` is just a Node.js library that has some functions which helps to call the functions of the user container.
+
+## Steps
+
+To use `orca-pod-template`, you have to follow these steps respectively.
+
+#### 1. Generate API Key
+
+Register as a ORCA Pod Creator and log in to [ORCA_WEB_UI](http://orca.chaindeck.io/) and get the API Key to get authenticated for communicating to the user container.
+
+#### 2. Install `orca-pulse`
+
+<Info>
+    **Prerequisite** You should have installed [Node.js](https://nodejs.org/)
+    (version 18.16.1).
+</Info>
+
+To install `orca-pulse` run the following command.
+
+```bash Terminal
+npm i orca-pulse
+```
+
+#### 3. Using `orca-pulse`
+
+Import `orca-pulse` in your code
+
+```javascript JavaScript
+const { OrcaPulse } = require("orca-pulse");
+```
+
+Create `OrcaPulse` instance from `orca-pulse`
+
+```javascript JavaScript
+const orca = new OrcaPulse({
+    orcaApiKey: <api-key>,
+    podImageUrl: <podImageUrl>,
+    podId: <podId>,
+    orcaUrl: <orcaUrl>,
+});
+```
+
+-   `api-key`: You got from the ORCA Web UI which is used to authenticate ORCA Pod Creator.
+-   `podImageUrl`: It is a user container image URL.
+-   `podId`: It is a task ID which would be unique.
+-   `orcaUrl`: By default, it is `wss://localhost:3003`. But, it can be changed by ORCA Node Operator.
+
+#### 4. Call arbitrary function
+
+In the below example we showed you how you can make a request to the user container for calling any function.
+
+```javascript JavaScript
+orca.podCall("httpTest", {
+    title: "test",
+    description: "test",
+    completed: "false",
+})
+    .then((res) => {
+        console.log("logging http request", res);
+    })
+    .catch((err) => {
+        console.log("logging error", err);
+    });
+```
+
+#### 5. Read the file from user container
+
+Below is the syntax of code which can be used to read the file from user container.
+
+```javascript JavaScript
+const ss = require("socket.io-stream");
+
+// filePathInOutDirectory can be any path of the file inside the out directory of the container
+// e.g.: "/temp/abc.csv" or any file extension
+nameofFileToStream = "test.txt";
+filePathInOutDirectory = "/test.txt";
+
+var stream = ss.createStream();
+
+stream = orca
+    .podCall("readFileStream", filePathInOutDirectory)
+    .then((stream, response) => {
+        console.log("stream value", stream);
+        stream.pipe(fs.createWriteStream(nameofFileToStream));
+
+        console.log("logging response", response);
+    })
+    .catch((error) => {
+        console.log("stream error", error);
+    });
+```
