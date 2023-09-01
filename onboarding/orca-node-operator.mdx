@@ -13,21 +13,29 @@ Register as ORCA Node Operator and log in to [ORCA_WEB_UI](http://orca.chaindeck
 
 #### 2. Install Podman
 
-Install Podman according to your system preferences.
+Podman is a containerization tool similar to Docker but focuses on providing a more secure and rootless container environment. Here's how you can install it according to your system preferences.
 
 <Tabs>
     <Tab title="Linux (Ubuntu)">
         <Note>The podman package is available in the official repositories for Ubuntu 20.10 and newer.</Note>
 
-        Install podman
-
+        Open a terminal on your Ubuntu system.<br />
+        Update the package list to ensure you have the latest information about available packages:
         ```bash Terminal
         # Ubuntu 20.10 and newer
         sudo apt-get update
+        ```
+        Install Podman using the following command:
+        ```bash Terminal
+        # Ubuntu 20.10 and newer
         sudo apt-get install podman -y
         ```
 
-        Initialize podman machine named `orca`
+        After the installation is complete, you can verify the installation by checking the Podman version:
+        ```bash Terminal
+        podman --version
+        ```
+        Initialize podman machine named `orca` to configure Podman to work with your user account without requiring root privileges. This is called the "rootless" mode, which enhances security:
 
         ```bash Terminal
         podman machine init orca
@@ -39,52 +47,64 @@ Install Podman according to your system preferences.
         podman machine start orca
         ```
 
-        <br />
+        Verify the `orca` machine status
+
+        ```bash Terminal
+        podman machine ls
+        ```
 
         <Warning>If the machine does not start and fails with any error, it means you have to enable virtualization from the BIOS settings.</Warning>
-    </Tab>
-    <Tab title="Mac">
-        On Mac, Podman is provided through [Homebrew](https://brew.sh/). Once you have set up brew, you can use the brew install command to install Podman.
+        <Note>Note that the above steps assume that you're using a Ubuntu version (typically versions 20.04 and later). If you're using an older version of Ubuntu, the process might be slightly different.</Note>
+    
+        After completing these steps, you should have Podman successfully installed on your Ubuntu system. 
 
-        Install podman
+        Keep in mind that software and repositories can change over time, so you might want to check the official Podman [documentation](https://podman.io/docs/installation#ubuntu) 
+    </Tab>
+
+    <Tab title="Mac">
+        On Mac, Podman is provided through [Homebrew](https://brew.sh/). Once you have set up brew, you can use the ```brew install``` command the install Podman. Use to following command to install:
 
         ```bash Terminal
         brew install podman
         ```
+        You can then verify the installation information using following command:
 
-        Create and start your first podman machine named `orca`
+        ```bash Terminal
+        podman --version
+        ```
+
+        Next, Create and start your first podman machine named `orca`
 
         ```bash Terminal
         podman machine init orca
         podman machine start orca
         ```
 
-        You can then verify the installation information using
+       Verify the machine status
 
         ```bash Terminal
-        podman info
+        podman machine ls
         ```
 
         <br />
 
         <Note>Podman also provide binaries and pkginstaller in their [GitHub release page](https://github.com/containers/podman/releases)</Note>
     </Tab>
+
     <Tab title="Windows">
         Download and install the latest version of Podman from [here](https://github.com/containers/podman/releases).
 
         Initialize podman machine named `orca`
 
-        ```bash CMD
+        ```CMD cmd
         podman machine init orca
         ```
 
         Start podman machine named `orca`
 
-        ```bash CMD
+        ```CMD cmd
         podman machine start orca
         ```
-
-        <br />
 
         <Note>You can check out the [Podman for Windows guide](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md) for setup and usage instructions.</Note>
     </Tab>
@@ -103,8 +123,131 @@ You can download ORCA according to your system preferences.
 
 #### 4. Start ORCA
 
-You can use `api-key` that you created on **Step 1**
+To start ORCA you need binary/exe/dmg that you install in previouse step and `api-key` that you created on **Step 1**
 
-```bash Terminal
-orca --API_KEY=<your-api-key>
-```
+<Tabs>
+    <Tab title="Linux(Ubuntu)">
+        There are two way that you can use to run ORCA
+        ```bash Terminal
+        # set environment variable
+        export ORCA_API_KEY=<your-api-key>
+        # start the orca
+        orca
+
+        # you can also pass api-key as argument
+        orca -r --API_KEY=<your-api-key>
+        ```
+    </Tab>
+
+    <Tab title="Mac">
+    </Tab>
+
+    <Tab title="Windows">
+        Once the download is completed for orca.exe
+        To start it, Open the terminal and run below command:
+        ```CMD cmd
+        start orca.exe -r --API_KEY <your-api-key>
+        ```
+    </Tab>
+</Tabs>
+
+#### 5  . Offboarding ORCA
+Whether you're looking to clean up your system or no longer need ORCA, removing ORCA from your system is a straightforward process. The method you use depends on your distribution's package manager. In this guide, we'll cover how to remove packages from Ubuntu, Mac, and Windows.  
+
+<Tabs>
+    <Tab title="Linux(Ubuntu)">
+        To remove ORCA from your Ubuntu system run the following command:
+        ```bash Terminal 
+        rm -rf <path-to-orca-binary>
+        ```
+
+        Once you removed the ORCA then delete the Podman and its machine(orca)
+        Check the machine status:
+        ```bash Terminal 
+        podman machine ls
+        ```
+
+        First, stop the machine:
+        ```bash Terminal 
+        podman machine stop orca
+        ```
+
+        Then, Run following command to delete the existing ORCA podman machine:
+        ```bash Terminal 
+        podman machine rm orca
+        ```
+        To uninstall podman, Use the following command:
+        ```bash Terminal 
+        sudp apt remove podman
+        ```
+        Verify the uninstallation of the podman and podman machine:
+        ```bash Terminal 
+        podman machine ls
+        podman info
+        ```
+        In the output of the above command you would not see any machine and information about the podman
+    
+    </Tab>
+    <Tab title="Mac">
+        To remove ORCA from your Ubuntu system run the following command:
+        ```bash Terminal 
+        rm -rf <path-to-orca-binary>
+        ```
+
+        Once you removed the ORCA then delete the Podman and its machine(orca)
+        Check the machine status:
+        ```bash Terminal 
+        podman machine ls
+        ```
+
+        First, stop the machine:
+        ```bash Terminal 
+        podman machine stop orca
+        ```
+
+        Then, Run following command to delete the existing ORCA podman machine:
+        ```bash Terminal 
+        podman machine rm orca
+        ```
+        To uninstall podman, Use the following command:
+        ```bash Terminal 
+        brew remove podman
+        ```
+        Verify the uninstallation of the podman and podman machine:
+        ```bash Terminal 
+        podman machine ls
+        podman info
+        ```
+        In the output of the above command you would not see any machine and information about the podman
+    
+    </Tab>
+    <Tab title="Windows">
+        To remove ORCA run the following command
+        ```CMD cmd
+        mv -r <path-to-win-upacked-dir>
+        ```
+
+        Check the machine status:
+        ```CMD cmd 
+        podman machine ls
+        ```
+
+        First, stop the machine:
+        ```CMD cmd 
+        podman machine stop orca
+        ```
+
+        Then, Run following command to delete the existing ORCA podman machine:
+        ```CMD cmd 
+        podman machine rm orca
+        ```
+
+        <Note>Uninstall Podman program from the windows as we do other programs it is very straightforward process.</Note>
+        
+        Verify the uninstallation of the podman and podman machine:
+        ```CMD cmd 
+        podman machine ls
+        podman info
+        ```
+    </Tab>
+</Tabs>
