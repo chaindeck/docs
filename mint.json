@@ -25,6 +25,15 @@
             "url": "https://discord.com/invite/pRvGP8Xqzb"
         }
     ],
+    "tabs": [
+        {
+            "name": "ORCA",
+            "url": "orca"
+        }
+    ],
+    "primaryTab": {
+        "name": "Data"
+    },
     "anchors": [
         {
             "name": "GitHub",
@@ -45,18 +54,21 @@
     "navigation": [
         {
             "group": "Get Started",
+            "pages": ["introduction"]
+        },
+        {
+            "group": "Get Started",
             "pages": [
-                "introduction",
-                "architecture",
+                "orca/introduction",
+                "orca/architecture",
                 {
                     "group": "Onboarding",
                     "pages": [
-                        "onboarding/overview",
-                        "onboarding/orca-node-operator",
-                        "onboarding/orca-pod-creator"
+                        "orca/onboarding/overview",
+                        "orca/onboarding/orca-node-operator",
+                        "orca/onboarding/orca-pod-creator"
                     ]
                 }
-
             ]
         }
     ],
