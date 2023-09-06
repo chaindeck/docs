@@ -189,12 +189,17 @@ Whether you're looking to clean up your system or no longer need ORCA, removing 
     
     </Tab>
     <Tab title="Mac">
-        To remove ORCA from your Ubuntu system run the following command:
-        ```bash Terminal 
-        rm -rf <path-to-orca-binary>
-        ```
+        Uninstall Orca using Trash in Mac
+        Whether you’re running a newer macOS, such as Ventura or Monterey, or an earlier macOS, like Catalina or Mojave, the process of manually uninstalling apps remains relatively similar. Here’s what you need to do:
 
-        Once you removed the ORCA then delete the Podman and its machine(orca)
+        1. Open Finder > Applications.
+        2. Choose the `ORCA` that want to delete.
+        3. Press Command + Delete (⌘⌫).
+        4. Empty the Trash by clicking the Empty button in the upper-right corner of the window.
+        5. And the app is gone.
+
+        Once you removed the ORCA then delete the Podman and its machine(orca).
+
         Check the machine status:
         ```bash Terminal 
         podman machine ls
@@ -211,7 +216,7 @@ Whether you're looking to clean up your system or no longer need ORCA, removing 
         ```
         To uninstall podman, Use the following command:
         ```bash Terminal 
-        brew remove podman
+        brew uninstall podman
         ```
         Verify the uninstallation of the podman and podman machine:
         ```bash Terminal 
@@ -222,12 +227,13 @@ Whether you're looking to clean up your system or no longer need ORCA, removing 
     
     </Tab>
     <Tab title="Windows">
-        To remove ORCA run the following command
-        ```CMD cmd
-        mv -r <path-to-win-upacked-dir>
-        ```
+        Follow the instructionsto uninstall ORCA from the Windows.
+        1. In the search box on the taskbar, type `Control Panel` and select it from the results.
+        2. Select `Programs` > `Programs and Features`.
+        3. Serach for ORCA and Press and hold (or right-click) on it to remove and select Uninstall or Uninstall/Change. Then follow the directions on the screen.        
 
-        Check the machine status:
+        After uninstalling ORCA, remove the podman and its machine as well.
+        Check the machine status using following command:
         ```CMD cmd 
         podman machine ls
         ```
