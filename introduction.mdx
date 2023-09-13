@@ -1,6 +1,158 @@
 ---
 title: Introduction
-description: "Welcome to the Chaindeck data docs"
+description: "Welcome to the Chaindeck blockchain data docs"
 ---
+## We are providing backfilled and streaming blockchain data for the following chains:
+1. Ethereum 
 
-## Coming Soon
+The table schemas are provided as follows:
+
+## 1. Blocks 
+    timestamp         
+    number            
+    hash              
+    parent_hash       
+    nonce            
+    sha3_uncles       
+    logs_bloom         
+    transactions_root  
+    state_root         
+    receipts_root      
+    miner              
+    difficulty         
+    total_difficulty   
+    size                               
+    extra_data        
+    gas_limit         
+    gas_used         
+    transaction_count 
+    base_fee_per_gas  
+    transactions_root
+
+## 2. Transactions
+
+    hash                     
+    nonce                     
+    transaction_index         
+    from_address              
+    to_address                
+    value                     
+    gas                       
+    gas_price                 
+    input                     
+    block_timestamp           
+    block_number              
+    block_hash                
+    max_fee_per_gas          
+    max_priority_fee_per_gas
+    transaction_type
+
+## 3. Logs
+
+    log_index         
+    transaction_hash   
+    transaction_index  
+    address           
+    data              
+    topic0             
+    topic1           
+    topic2
+    topic3            
+    block_timestamp   
+    block_number      
+    block_hash 
+
+## 4. Receipts
+
+    transaction_hash
+    transaction_index   
+    cumulative_gas_used 
+    gas_used            
+    contract_address    
+    root               
+    status              
+    effective_gas_price 
+    block_timestamp     
+    block_number        
+    block_hash 
+
+## 5. Token_Transfers
+
+    token_address    
+    from_address    
+    to_address       
+    value           
+    transaction_hash
+    log_index        
+    block_timestamp  
+    block_number
+    block_hash
+
+## 6. Tokens 
+
+    address          
+    name            
+    symbol          
+    decimals        
+    total_supply    
+    block_number     
+    block_hash       
+    block_timestamp  
+
+## 7. Contracts
+
+    address            
+    bytecode           
+    function_sighashes 
+    is_erc20           
+    is_erc721           
+    block_number        
+    block_hash         
+    block_timestamp  
+        
+## 8. Traces
+
+    transaction_hash  
+    transaction_index          
+    from_address      
+    to_address         
+    value             
+    input
+    output
+    trace_type        
+    call_type          
+    reward_type       
+    gas                
+    gas_used          
+    subtraces         
+    trace_address      
+    error              
+    status             
+    block_timestamp   
+    block_number
+    block_hash        
+    trace_id  
+
+ ### How users will interact with our data ?
+
+ 1. Login to app.chaindeck.io.
+ <Frame>
+    <img src="/images/chaindeck-login.png" style={{ borderRadius: "0.5rem" }} />
+</Frame>
+2. Once you are logged in click on the authorize button only after that you are able to make any query.
+<Frame>
+    <img src="/images/authorization.png" style={{ borderRadius: "0.5rem" }} />
+</Frame>
+3. Now you can qyery data from the tables that is shown in the UI.
+<Frame>
+    <img src="/images/sqlquery.png" style={{ borderRadius: "0.5rem" }} />
+</Frame>
+
+
+
+
+
+
+
+
+
