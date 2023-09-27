@@ -3,17 +3,13 @@ title: "ORCA Node Operator"
 description: "In this tutorial you'll learn how to set up the ORCA Node Operator"
 ---
 
-## Steps
-
-To install ORCA, you have to follow these steps respectively.
-
-#### 1. Generate API Key
-
-Register as ORCA Node Operator and log in to [ORCA_WEB_UI](http://orca.chaindeck.io/) and get the API Key to get authenticated for running ORCA.
-
-#### 2. Install Podman
+## 1. Installing Podman
 
 Podman is a containerization tool similar to Docker but focuses on providing a more secure and rootless container environment. Here's how you can install it according to your system preferences.
+
+### Prerequisites
+1.  Virtualisation must be enable in the system
+
 
 <Tabs>
     <Tab title="Linux (Ubuntu)">
@@ -42,7 +38,16 @@ Podman is a containerization tool similar to Docker but focuses on providing a m
         ```
 
         Start podman machine named `orca`
+        <Warning>You might get this error, if you did not enable **Virtualisation** in your system `Getting error (Error: exec: "qemu-system-x86_64": executable file not found in $PATH) Issue`.</Warning>
 
+        Enabling virtulisation: <br />
+            1. To verify, you can check virtulisation status using below command  <br />
+                `sudo dmesg | grep kvm` <br />
+                It will say kvm: disabled by bios if the setting is disabled  <br />
+            2. Then, run following command to enable it<br />
+                `sudo modprobe kvm-intel` <br />
+                if it is also keep giving the following error -  `could not insert 'kvm_intel': Operation not supported` <br />
+            3. **You have to go in the BIOS and enable Virtualization manually.**
         ```bash Terminal
         podman machine start orca
         ```
@@ -52,8 +57,6 @@ Podman is a containerization tool similar to Docker but focuses on providing a m
         ```bash Terminal
         podman machine ls
         ```
-
-        <Warning>If the machine does not start and fails with any error, it means you have to enable virtualization from the BIOS settings.</Warning>
         <Note>Note that the above steps assume that you're using a Ubuntu version (typically versions 20.04 and later). If you're using an older version of Ubuntu, the process might be slightly different.</Note>
     
         After completing these steps, you should have Podman successfully installed on your Ubuntu system. 
@@ -89,6 +92,8 @@ Podman is a containerization tool similar to Docker but focuses on providing a m
         <br />
 
         <Note>Podman also provide binaries and pkginstaller in their [GitHub release page](https://github.com/containers/podman/releases)</Note>
+
+
     </Tab>
 
     <Tab title="Windows">
@@ -110,150 +115,40 @@ Podman is a containerization tool similar to Docker but focuses on providing a m
     </Tab>
 
 </Tabs>
-
-#### 3. Download and install ORCA
-
-You can download ORCA according to your system preferences.
-
-| OS Type           | Architecture Type | Link                                                                                    |
-| ----------------- | ----------------- | --------------------------------------------------------------------------------------- |
-| Linux (.AppImage) | x64               | [Download](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.2.AppImage)  |
-| Windows (.exe)    | x64               | [Download](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca+Setup+0.0.2.exe) |
-| Mac(.dmg)         | arm64             | [Download](https://orca-update-assests.s3.us-west-2.amazonaws.com/Orca-0.0.2.dmg)       |
-
-#### 4. Start ORCA
-
-To start ORCA you need binary/exe/dmg that you install in previouse step and `api-key` that you created on **Step 1**
-
-<Tabs>
-    <Tab title="Linux(Ubuntu)">
-        There are two way that you can use to run ORCA
-        ```bash Terminal
-        # set environment variable
-        export ORCA_API_KEY=<your-api-key>
-        # start the orca
-        orca
-
-        # you can also pass api-key as argument
-        orca -r --API_KEY=<your-api-key>
-        ```
-    </Tab>
-
-    <Tab title="Mac">
-    </Tab>
-
-    <Tab title="Windows">
-        Once the download is completed for orca.exe
-        To start it, Open the terminal and run below command:
-        ```CMD cmd
-        start orca.exe -r --API_KEY <your-api-key>
-        ```
-    </Tab>
-</Tabs>
-
-#### 5  . Offboarding ORCA
-Whether you're looking to clean up your system or no longer need ORCA, removing ORCA from your system is a straightforward process. The method you use depends on your distribution's package manager. In this guide, we'll cover how to remove packages from Ubuntu, Mac, and Windows.  
-
-<Tabs>
-    <Tab title="Linux(Ubuntu)">
-        To remove ORCA from your Ubuntu system run the following command:
-        ```bash Terminal 
-        rm -rf <path-to-orca-binary>
+### Troubleshooting
+#### 1. "could not find \"gvproxy\" in one of [/usr/local/libexec/podman /usr/local/lib/podman /usr/libexec/podman /usr/lib/podman]"
+**Solution:**
+To install gvproxy in the Ubuntu just run following command:
+```bash Terminal
+    sudo wget https://github.com/containers/gvisor-tap-vsock/releases/download/v0.6.2/gvproxy-linux -O /usr/libexec/podman/gvproxy && sudo chmod +x /usr/libexec/podman/gvproxy 
         ```
 
-        Once you removed the ORCA then delete the Podman and its machine(orca)
-        Check the machine status:
-        ```bash Terminal 
-        podman machine ls
-        ```
+## 2. ORCA
+ORCA is JS library it can be install as other NPM package. You will need access to download it, since it is private NPM package.
 
-        First, stop the machine:
-        ```bash Terminal 
-        podman machine stop orca
-        ```
+<Note> NodeJS must be installed </Note>
 
-        Then, Run following command to delete the existing ORCA podman machine:
-        ```bash Terminal 
-        podman machine rm orca
-        ```
-        To uninstall podman, Use the following command:
-        ```bash Terminal 
-        sudp apt remove podman
-        ```
-        Verify the uninstallation of the podman and podman machine:
-        ```bash Terminal 
-        podman machine ls
-        podman info
-        ```
-        In the output of the above command you would not see any machine and information about the podman
-    
-    </Tab>
-    <Tab title="Mac">
-        Uninstall Orca using Trash in Mac
-        Whether you’re running a newer macOS, such as Ventura or Monterey, or an earlier macOS, like Catalina or Mojave, the process of manually uninstalling apps remains relatively similar. Here’s what you need to do:
+Get username and password from the administatrator. Login in to the NPM repository. 
+```bash Terminal
+npm login --scope=@chaindeck --auth-type=legacy --registry https://npm.pkg.github.com
+```
 
-        1. Open Finder > Applications.
-        2. Choose the `ORCA` that want to delete.
-        3. Press Command + Delete (⌘⌫).
-        4. Empty the Trash by clicking the Empty button in the upper-right corner of the window.
-        5. And the app is gone.
+#### Installing ORCA
+Run to following command to save and install ORCA NPM package
 
-        Once you removed the ORCA then delete the Podman and its machine(orca).
+```bash Terminal
+npm i --save @chaindeck/orca
+```
 
-        Check the machine status:
-        ```bash Terminal 
-        podman machine ls
-        ```
+#### Using ORCA
+```javascript JavaScript
+const {Orca} = require('@chaindeck/orca')
 
-        First, stop the machine:
-        ```bash Terminal 
-        podman machine stop orca
-        ```
+// Create an instance of ORCA
+orca = new Orca()
 
-        Then, Run following command to delete the existing ORCA podman machine:
-        ```bash Terminal 
-        podman machine rm orca
-        ```
-        To uninstall podman, Use the following command:
-        ```bash Terminal 
-        brew uninstall podman
-        ```
-        Verify the uninstallation of the podman and podman machine:
-        ```bash Terminal 
-        podman machine ls
-        podman info
-        ```
-        In the output of the above command you would not see any machine and information about the podman
-    
-    </Tab>
-    <Tab title="Windows">
-        Follow the instructionsto uninstall ORCA from the Windows.
-        1. In the search box on the taskbar, type `Control Panel` and select it from the results.
-        2. Select `Programs` > `Programs and Features`.
-        3. Serach for ORCA and Press and hold (or right-click) on it to remove and select Uninstall or Uninstall/Change. Then follow the directions on the screen.        
+// Call the initalize funtion to start the ORCA
+orca.initalize()
+```
 
-        After uninstalling ORCA, remove the podman and its machine as well.
-        Check the machine status using following command:
-        ```CMD cmd 
-        podman machine ls
-        ```
 
-        First, stop the machine:
-        ```CMD cmd 
-        podman machine stop orca
-        ```
-
-        Then, Run following command to delete the existing ORCA podman machine:
-        ```CMD cmd 
-        podman machine rm orca
-        ```
-
-        <Note>Uninstall Podman program from the windows as we do other programs it is very straightforward process.</Note>
-        
-        Verify the uninstallation of the podman and podman machine:
-        ```CMD cmd 
-        podman machine ls
-        podman info
-        ```
-    </Tab>
-</Tabs>
