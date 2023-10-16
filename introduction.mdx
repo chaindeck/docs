@@ -1,157 +1,108 @@
+"Welcome to the Blockchain Data Portal. This platform provides access to blockchain data related to the evm network, specifically focusing on transaction data from the genesis block. Blockchain technology, known for its decentralized and immutable ledger, has numerous applications, from financial transactions to supply chain management. This data is essential for researchers, developers, and analysts interested in studying evm transaction's history.
+
+The data is sourced from the Ethereum mainnet via a public blockchain explorer API, ensuring its credibility and authenticity. Its primary purpose is to support research and analysis of Ethereum transactions. This data is updated in real-time, offering an up-to-date perspective on the network.
+
+## Table Schemas
+
+### blocks.csv
+
+Column            | Type               |
+------------------|--------------------|
+number            | bigint             |
+hash              | hex_string         |
+parent_hash       | hex_string         |
+nonce             | hex_string         |
+sha3_uncles       | hex_string         |
+logs_bloom        | hex_string         |
+transactions_root | hex_string         |
+state_root        | hex_string         |
+receipts_root     | hex_string         |
+miner             | address            |
+difficulty        | numeric            |
+total_difficulty  | numeric            |
+size              | bigint             |
+extra_data        | hex_string         |
+gas_limit         | bigint             |
+gas_used          | bigint             |
+timestamp         | bigint             |
+transaction_count | bigint             |
+base_fee_per_gas     | bigint             |
+
 ---
-title: Introduction
-description: "Welcome to the Chaindeck blockchain data docs"
+
+### transactions.csv
+
+Column           |    Type     |
+-----------------|-------------|
+hash             | hex_string  |
+nonce            | bigint      |
+block_hash       | hex_string  |
+block_number     | bigint      |
+transaction_index| bigint      |
+from_address     | address     |
+to_address       | address     |
+value            | numeric     |
+gas              | bigint      |
+gas_price        | bigint      |
+input            | hex_string  |
+block_timestamp  | bigint      |
+max_fee_per_gas  | bigint      |
+max_priority_fee_per_gas | bigint |
+transaction_type | bigint |
+
 ---
-## We are providing backfilled and streaming blockchain data for different chains:
 
-The table schemas are provided as follows:
+### receipts.csv
 
-## 1. Blocks 
-    timestamp         
-    number            
-    hash              
-    parent_hash       
-    nonce            
-    sha3_uncles       
-    logs_bloom         
-    transactions_root  
-    state_root         
-    receipts_root      
-    miner              
-    difficulty         
-    total_difficulty   
-    size                               
-    extra_data        
-    gas_limit         
-    gas_used         
-    transaction_count 
-    base_fee_per_gas  
-    transactions_root
+Column                       |    Type     |
+-----------------------------|-------------|
+transaction_hash             | hex_string  |
+transaction_index            | bigint      |
+block_hash                   | hex_string  |
+block_number                 | bigint      |
+cumulative_gas_used          | bigint      |
+gas_used                     | bigint      |
+contract_address             | address     |
+root                         | hex_string  |
+status                       | bigint      |
+effective_gas_price          | bigint      |
 
-## 2. Transactions
+---
 
-    hash                     
-    nonce                     
-    transaction_index         
-    from_address              
-    to_address                
-    value                     
-    gas                       
-    gas_price                 
-    input                     
-    block_timestamp           
-    block_number              
-    block_hash                
-    max_fee_per_gas          
-    max_priority_fee_per_gas
-    transaction_type
+### logs.csv
 
-## 3. Logs
+Column                   |    Type     |
+-------------------------|-------------|
+log_index                | bigint      |
+transaction_hash         | hex_string  |
+transaction_index        | bigint      |
+block_hash               | hex_string  |
+block_number             | bigint      |
+address                  | address     |
+data                     | hex_string  |
+topics                   | string      |
 
-    log_index         
-    transaction_hash   
-    transaction_index  
-    address           
-    data              
-    topic0             
-    topic1           
-    topic2
-    topic3            
-    block_timestamp   
-    block_number      
-    block_hash 
+---
 
-## 4. Receipts
+### traces.csv
 
-    transaction_hash
-    transaction_index   
-    cumulative_gas_used 
-    gas_used            
-    contract_address    
-    root               
-    status              
-    effective_gas_price 
-    block_timestamp     
-    block_number        
-    block_hash 
-
-## 5. Token_Transfers
-
-    token_address    
-    from_address    
-    to_address       
-    value           
-    transaction_hash
-    log_index        
-    block_timestamp  
-    block_number
-    block_hash
-
-## 6. Tokens 
-
-    address          
-    name            
-    symbol          
-    decimals        
-    total_supply    
-    block_number     
-    block_hash       
-    block_timestamp  
-
-## 7. Contracts
-
-    address            
-    bytecode           
-    function_sighashes 
-    is_erc20           
-    is_erc721           
-    block_number        
-    block_hash         
-    block_timestamp  
-        
-## 8. Traces
-
-    transaction_hash  
-    transaction_index          
-    from_address      
-    to_address         
-    value             
-    input
-    output
-    trace_type        
-    call_type          
-    reward_type       
-    gas                
-    gas_used          
-    subtraces         
-    trace_address      
-    error              
-    status             
-    block_timestamp   
-    block_number
-    block_hash        
-    trace_id  
-
- ### How users will interact with our data ?
-
- 1. Login to app.chaindeck.io.
- <Frame>
-    <img src="/images/chaindeck-login.png" style={{ borderRadius: "0.5rem" }} />
-</Frame>
-2. Once you are logged in click on the authorize button only after that you are able to make any query.
-<Frame>
-    <img src="/images/authorization.png" style={{ borderRadius: "0.5rem" }} />
-</Frame>
-3. Now you can qyery data from the tables that is shown in the UI.
-<Frame>
-    <img src="/images/sqlquery.png" style={{ borderRadius: "0.5rem" }} />
-</Frame>
-
-
-
-
-
-
-
-
-
+Column                       |    Type     |
+-----------------------------|-------------|
+block_number                 | bigint      |
+transaction_hash             | hex_string  |
+transaction_index            | bigint      |
+from_address                 | address     |
+to_address                   | address     |
+value                        | numeric     |
+input                        | hex_string  |
+output                       | hex_string  |
+trace_type                   | string      |
+call_type                    | string      |
+reward_type                  | string      |
+gas                          | bigint      |
+gas_used                     | bigint      |
+subtraces                    | bigint      |
+trace_address                | string      |
+error                        | string      |
+status                       | bigint      |
+trace_id                     | string      |

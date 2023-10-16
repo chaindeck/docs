@@ -1,0 +1,31 @@
+
+An Ethereum transaction refers to an action initiated by an externally-owned account, in other words an account managed by a human, not a contract. For example, if Bob sends Alice 1 ETH, Bob's account must be debited and Alice's must be credited. This state-changing action takes place within a transaction.
+
+```bash psql
+select * from ethereum.transactions where block_number=15000000;
+```
+
+### Table schema
+
+## transactions.csv
+
+Column           |    Type     |
+-----------------|-------------|
+hash             | hex_string  |
+nonce            | bigint      |
+block_hash       | hex_string  |
+block_number     | bigint      |
+transaction_index| bigint      |
+from_address     | address     |
+to_address       | address     |
+value            | numeric     |
+gas              | bigint      |
+gas_price        | bigint      |
+input            | hex_string  |
+block_timestamp  | bigint      |
+max_fee_per_gas  | bigint      |
+max_priority_fee_per_gas | bigint |
+transaction_type | bigint |
+
+---
+

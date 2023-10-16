@@ -1,0 +1,22 @@
+## Getting started
+
+With our UI, you can easily query chaindeck's data and retrieve results using simple sql query. To get started, follow these steps
+
+1. Login to https://app.chaindeck.io/login 
+2. Once authorize you can make query to our chaindeck SQL UI.
+
+<img
+    className="block dark:hidden"
+    src="/images/sqlquery.png"
+    alt="Hero Light"
+/>
+
+• create a query you want to run programmatically, For your convenience, here's are some examples query you can use:
+```bash psql
+select * from ethereum.blocks where number between 1500000 and 1500100;
+```
+```bash psql
+select * from ethereum.transactions where to_address=' 0x0000000000000000000000000000000000000000'
+```
+
+

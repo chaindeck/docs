@@ -1,0 +1,24 @@
+
+Events let you communicate with your smart contract from your frontend or other subscribing applications. When a transaction is mined, smart contracts can emit events and write logs to the blockchain that the frontend can then process.
+
+```bash psql
+select * from ethereum.logs where block_number=15000000;
+```
+
+### Table schema
+
+## logs.csv
+
+Column                   |    Type     |
+-------------------------|-------------|
+log_index                | bigint      |
+transaction_hash         | hex_string  |
+transaction_index        | bigint      |
+block_hash               | hex_string  |
+block_number             | bigint      |
+address                  | address     |
+data                     | hex_string  |
+topics                   | string      |
+
+---
+
