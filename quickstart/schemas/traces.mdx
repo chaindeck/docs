@@ -1,8 +1,8 @@
 
 Any smart contract execution begins with a transaction initiated by an external account. In turn, the smart contract can interact with other contracts or make transfers. These activities are not recorded in the blockchain. A smart contract, for example, can airdrop tokens (i.e. send free tokens) to a group of users, but this activity is not recorded in the blockchain as a transaction. For such activities, the contract can choose to emit events, which can then be viewed in the logs. Otherwise, the only way to observe them is to monitor the traces.
 
-```bash psql
-select * from ethereum.traces where block_number=15000000;
+```bash sql
+select * from ethereum.traces where to_address='0x05a56e2d52c817161883f50c441c3228cfe54d9f';
 ```
 
 ### Table schema

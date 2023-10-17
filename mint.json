@@ -52,27 +52,23 @@
         }
     ],
     "navigation": [
-        {
-            "group": "Get Started",
-            "pages": ["introduction"]
-
-
-        },
+      
         {   
             "group": "Quickstart",
             "pages": [
-                "Quickstart/making a curl request",
-                "Quickstart/UI",
+                "quickstart/intro",
+                "quickstart/api",
+                "quickstart/ui",
 
 
                 {
-                    "group": "Raw Data",
+                    "group": "Table Schemas",
                     "pages": [
-                        "Quickstart/Raw/blocks",
-                        "Quickstart/Raw/transactions",
-                        "Quickstart/Raw/logs",
-                        "Quickstart/Raw/receipts",
-                        "Quickstart/Raw/traces"
+                        "quickstart/shemas/blocks",
+                        "quickstart/schemas/transactions",
+                        "quickstart/schemas/logs",
+                        "quickstart/schemas/receipts",
+                        "quickstart/schemas/traces"
                     ]
                 }
             ]

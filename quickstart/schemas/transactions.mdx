@@ -1,8 +1,8 @@
 
-An Ethereum transaction refers to an action initiated by an externally-owned account, in other words an account managed by a human, not a contract. For example, if Bob sends Alice 1 ETH, Bob's account must be debited and Alice's must be credited. This state-changing action takes place within a transaction.
+An Ethereum transaction refers to an action initiated by an externally-owned account, in other words an account managed by a human, not a contract.
 
-```bash psql
-select * from ethereum.transactions where block_number=15000000;
+```bash sql
+select * from ethereum.transactions where to_address= '0x0000000000000000000000000000000000000000';
 ```
 
 ### Table schema

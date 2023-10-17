@@ -2,12 +2,10 @@
 A blockchain receipt (also known as a “light client proof”) provides proof that
 some data existed at a specific time, and that the data was approved by the
 validators of the blockchain. The receipt contains all the information needed to
-prove an individual input was indeed part of an approved block. This paper
-proposes a patented method to optimize the way old receipts are verified against
-new blocks, by the use of history trees.
+prove an individual input was indeed part of an approved block. 
 
-```bash psql
-select * from ethereum.receipts where number=15000000;
+```bash sql
+select * from ethereum.receipts where contract_address='0x0013e723f574bafd47cc1542532cdcd98c1c2989';
 ```
 
 ### Table schema
