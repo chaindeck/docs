@@ -1,0 +1,19 @@
+With the Explorer API you can access any blockchain data using a SQL query. 
+You can even specify the format that you need the response in.
+
+All SQL queries are sent as the body of a POST request to <br/> https://hobbyist-db.api.chaindeck.io/
+
+Example 
+
+```bash cURL
+echo 'Select * from blocks format JSON' | curl -H 'X-Chaindeck-User: <user_email>' -H 'X-Chaindeck-Key:<user-password>' 'https://hobbyist-db.api.chaindeck.io/' -d @-
+```
+Supported Formats | 
+------------------|
+SQL(default)      |
+JSON              | 
+CSV               | 
+Tab separated     |
+Parquet           |
+Arrow             |
+BSON(MongoDB)     |

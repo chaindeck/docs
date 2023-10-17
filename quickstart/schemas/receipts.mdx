@@ -1,0 +1,34 @@
+
+A blockchain receipt (also known as a “light client proof”) provides proof that
+some data existed at a specific time, and that the data was approved by the
+validators of the blockchain. The receipt contains all the information needed to
+prove an individual input was indeed part of an approved block. 
+
+```bash sql
+select * from ethereum.receipts where contract_address='0x0013e723f574bafd47cc1542532cdcd98c1c2989';
+```
+
+### Table schema
+
+## receipts.csv
+
+Column                       |    Type     |
+-----------------------------|-------------|
+transaction_hash             | hex_string  |
+transaction_index            | bigint      |
+block_hash                   | hex_string  |
+block_number                 | bigint      |
+cumulative_gas_used          | bigint      |
+gas_used                     | bigint      |
+contract_address             | address     |
+root                         | hex_string  |
+status                       | bigint      |
+effective_gas_price          | bigint      |
+
+---
+
+
+
+
+
+

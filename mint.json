@@ -52,9 +52,26 @@
         }
     ],
     "navigation": [
-        {
-            "group": "Get Started",
-            "pages": ["introduction"]
+      
+        {   
+            "group": "Quickstart",
+            "pages": [
+                "quickstart/intro",
+                "quickstart/api",
+                "quickstart/ui",
+
+
+                {
+                    "group": "Table Schemas",
+                    "pages": [
+                        "quickstart/shemas/blocks",
+                        "quickstart/schemas/transactions",
+                        "quickstart/schemas/logs",
+                        "quickstart/schemas/receipts",
+                        "quickstart/schemas/traces"
+                    ]
+                }
+            ]
         },
         {
             "group": "Get Started",
