@@ -87,9 +87,15 @@
                     ]
                 },
                 {
-                    "group": "Guides",
+                    "group": "Integrators",
                     "pages": [
-                        "orca/guides/orca-koii-dev"
+                        "orca/integrators/koii-orca"
+                    ]
+                },
+                {
+                    "group": "Users",
+                    "pages": [
+                        "orca/users/orca"
                     ]
                 }
             ]
