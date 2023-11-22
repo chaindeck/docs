@@ -25,15 +25,6 @@
             "url": "https://discord.com/invite/pRvGP8Xqzb"
         }
     ],
-    "tabs": [
-        {
-            "name": "ORCA",
-            "url": "orca"
-        }
-    ],
-    "primaryTab": {
-        "name": "Data"
-    },
     "anchors": [
         {
             "name": "GitHub",
@@ -52,44 +43,21 @@
         }
     ],
     "navigation": [
-      
-        {   
+        {
             "group": "Quickstart",
             "pages": [
                 "quickstart/intro",
                 "quickstart/api",
                 "quickstart/ui",
 
-
                 {
                     "group": "Table Schemas",
                     "pages": [
-                        "quickstart/shemas/blocks",
+                        "quickstart/schemas/blocks",
                         "quickstart/schemas/transactions",
                         "quickstart/schemas/logs",
                         "quickstart/schemas/receipts",
                         "quickstart/schemas/traces"
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "Get Started",
-            "pages": [
-                "orca/introduction",
-                "orca/architecture",
-                {
-                    "group": "Onboarding",
-                    "pages": [
-                        "orca/onboarding/overview",
-                        "orca/onboarding/orca-node-operator",
-                        "orca/onboarding/orca-pod-creator"
-                    ]
-                },
-                {
-                    "group": "Guides",
-                    "pages": [
-                        "orca/guides/orca-koii-dev"
                     ]
                 }
             ]
