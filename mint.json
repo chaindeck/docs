@@ -1,6 +1,6 @@
 {
     "$schema": "https://mintlify.com/schema.json",
-    "name": "Chaindeck",
+    "name": "Orca",
     "logo": {
         "dark": "/logo/dark.png",
         "light": "/logo/light.png"
@@ -8,15 +8,12 @@
     "isWhiteLabeled": true,
     "favicon": "/favicon.png",
     "colors": {
-        "primary": "#9563FF",
-        "light": "#AE87FF",
-        "dark": "#0D001D",
-        "background": {
-            "dark": "#090014"
-        },
+        "primary": "#0D9373",
+        "light": "#07C983",
+        "dark": "#0D9373",
         "anchors": {
-            "from": "#FF7F57",
-            "to": "#9563FF"
+            "from": "#0D9373",
+            "to": "#07C983"
         }
     },
     "topbarLinks": [
@@ -44,30 +41,25 @@
     ],
     "navigation": [
         {
-            "group": "Quickstart",
+            "group": "Get Started",
             "pages": [
-                "quickstart/intro",
-                "quickstart/api",
-                "quickstart/ui",
-
-                {
-                    "group": "Table Schemas",
-                    "pages": [
-                        "quickstart/schemas/blocks",
-                        "quickstart/schemas/transactions",
-                        "quickstart/schemas/logs",
-                        "quickstart/schemas/receipts",
-                        "quickstart/schemas/traces"
-                    ]
-                }
+                "introduction",
+                "architecture",
+                "orcaNode",
+                "orcaPod"
             ]
+
+        },
+        {
+            "group": "Orca Decentralized Kubernetes",
+            "pages": ["orca-kubernetes/orca"]
         }
     ],
     "footerSocials": {
         "github": "https://github.com/chaindeck/",
         "linkedin": "https://www.linkedin.com/company/chaindeck/",
         "discord": "https://discord.com/invite/pRvGP8Xqzb",
-        "twitter": "https://twitter.com/ChaindeckSocial",
+        "twitter": "https://twitter.com/OrcaCompute",
         "medium": "https://chaindeck.medium.com/"
     }
 }
